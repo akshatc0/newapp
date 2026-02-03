@@ -78,7 +78,7 @@ const NavigationMenu = () => {
         </ul>
 
         {/* Social Icons */}
-        <div className="mt-[180px] flex items-center justify-center gap-8">
+        <div className="mt-[300px] flex items-center justify-center gap-8">
           {/* Instagram */}
           <a
             href="https://instagram.com/akshat_c1"
