@@ -5,6 +5,7 @@ import Lenis from "lenis";
 import { useEffect, useRef, useState } from "react";
 import { Typewriter } from "./Typewriter";
 import NavigationMenu from "./NavigationMenu";
+import Skiper88 from "./Skiper88";
 
 const images = [
   "/images/CLIM8206-fc102533-c390-4cb7-ad04-468e0f1a6206.png",
@@ -118,6 +119,9 @@ const ParallaxGallery = () => {
           />
         ))}
       </div>
+
+      {/* Skiper88 Scroll Section */}
+      <Skiper88 />
 
       {/* Navigation Menu Section */}
       <NavigationMenu />
