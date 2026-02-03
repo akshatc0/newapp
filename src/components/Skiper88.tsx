@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useScroll, useTransform } from "framer-motion";
-import React from "react";
+import React, { useRef } from "react";
 
 const Skiper88 = () => {
   const items = [
@@ -12,44 +12,47 @@ const Skiper88 = () => {
     "Web Content Developer",
     "Former Cadet",
   ];
-  const radius = 150; // radius of the circle in pixels
+  const radius = 200; // radius of the circle in pixels
 
-  const { scrollYProgress } = useScroll();
-  const rotateParent = useTransform(scrollYProgress, [0, 1], [-73, 242]);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"],
+  });
+  const rotateParent = useTransform(scrollYProgress, [0, 1], [0, -180]);
 
   return (
-    <div className="relative h-[300vh] w-full overflow-hidden bg-[#eee]">
+    <div ref={containerRef} className="relative h-[200vh] w-full bg-[#eee]">
       <div className="sticky top-0 flex h-screen w-full items-center justify-center">
         <div
-          className="relative"
           style={{
-            perspective: "500px",
+            perspective: "1000px",
+            perspectiveOrigin: "center center",
           }}
         >
-          <motion.ul
-            className="relative w-full"
+          <motion.div
             style={{
               transformStyle: "preserve-3d",
               rotateX: rotateParent,
             }}
           >
             {items.map((item, index) => {
-              const angle = (-180 / items.length) * index; // angle in degrees
+              const angle = (360 / items.length) * index;
 
               return (
-                <li
+                <div
                   key={index}
-                  className="backface-hidden absolute left-1/2 top-1/2 flex -translate-x-1/2 -translate-y-1/2 items-center justify-center text-4xl font-semibold tracking-tighter text-neutral-900 md:text-5xl"
+                  className="absolute left-1/2 top-1/2 flex items-center justify-center whitespace-nowrap text-4xl font-semibold tracking-tighter text-neutral-900 md:text-5xl lg:text-6xl"
                   style={{
-                    transform: `rotateX(${angle}deg) translateZ(${radius}px)`,
-                    transformStyle: "preserve-3d",
+                    transform: `translateX(-50%) translateY(-50%) rotateX(${angle}deg) translateZ(${radius}px)`,
+                    backfaceVisibility: "hidden",
                   }}
                 >
                   {item}
-                </li>
+                </div>
               );
             })}
-          </motion.ul>
+          </motion.div>
         </div>
       </div>
     </div>
