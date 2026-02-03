@@ -18,10 +18,10 @@ const Skiper88 = () => {
   const rotateParent = useTransform(scrollYProgress, [0, 1], [-73, 242]);
 
   return (
-    <div className="grid h-[300vh] w-full bg-[#eee]">
-      <div className="relative w-full">
+    <div className="relative h-[300vh] w-full overflow-hidden bg-[#eee]">
+      <div className="sticky top-0 flex h-screen w-full items-center justify-center">
         <div
-          className="sticky top-1/2 -translate-y-1/2"
+          className="relative"
           style={{
             perspective: "500px",
           }}
