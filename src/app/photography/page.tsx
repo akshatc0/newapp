@@ -30,6 +30,21 @@ const photographyImages = [
   "/images/photography/img24.png",
   "/images/photography/img25.png",
   "/images/photography/img26.png",
+  "/images/photography/img27.png",
+  "/images/photography/img28.png",
+  "/images/photography/img29.png",
+  "/images/photography/img30.png",
+  "/images/photography/img31.png",
+  "/images/photography/img32.png",
+  "/images/photography/img33.png",
+  "/images/photography/img34.png",
+  "/images/photography/img35.png",
+  "/images/photography/img36.png",
+  "/images/photography/img37.png",
+  "/images/photography/img38.png",
+  "/images/photography/img39.png",
+  "/images/photography/img40.png",
+  "/images/photography/img41.png",
 ];
 
 export default function PhotographyPage() {
