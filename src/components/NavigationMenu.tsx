@@ -41,8 +41,8 @@ const navigationItems = [
 
 const NavigationMenu = () => {
   return (
-    <section className="flex min-h-screen w-full items-center justify-center bg-neutral-950 px-6 py-20">
-      <div className="flex w-full max-w-4xl flex-col items-center justify-center">
+    <section className="flex min-h-screen w-full flex-col items-center justify-center bg-neutral-950 px-6 py-20">
+      <div className="flex w-full max-w-4xl flex-col items-center">
         <ul className="flex w-full flex-col items-center justify-center gap-4 sm:gap-6">
           {navigationItems.map((item, index) => (
             <li
