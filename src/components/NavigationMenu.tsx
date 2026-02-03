@@ -41,7 +41,7 @@ const navigationItems = [
 
 const NavigationMenu = () => {
   return (
-    <section className="flex min-h-screen w-full flex-col items-center justify-center bg-neutral-950 px-6 py-20">
+    <section className="relative flex min-h-screen w-full flex-col items-center justify-center bg-neutral-950 px-6 py-20">
       <div className="flex w-full max-w-4xl flex-col items-center">
         <ul className="flex w-full flex-col items-center justify-center gap-4 sm:gap-6">
           {navigationItems.map((item, index) => (
@@ -78,7 +78,7 @@ const NavigationMenu = () => {
         </ul>
 
         {/* Social Icons */}
-        <div className="mt-[300px] flex items-center justify-center gap-8">
+        <div className="absolute bottom-12 left-1/2 flex -translate-x-1/2 items-center gap-8">
           {/* Instagram */}
           <a
             href="https://instagram.com/akshat_c1"
