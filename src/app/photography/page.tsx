@@ -19,6 +19,17 @@ const photographyImages = [
   "/images/photography/img13.png",
   "/images/photography/img14.png",
   "/images/photography/img15.png",
+  "/images/photography/img16.png",
+  "/images/photography/img17.png",
+  "/images/photography/img18.png",
+  "/images/photography/img19.png",
+  "/images/photography/img20.png",
+  "/images/photography/img21.png",
+  "/images/photography/img22.png",
+  "/images/photography/img23.png",
+  "/images/photography/img24.png",
+  "/images/photography/img25.png",
+  "/images/photography/img26.png",
 ];
 
 export default function PhotographyPage() {
