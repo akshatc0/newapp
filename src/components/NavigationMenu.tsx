@@ -78,10 +78,10 @@ const NavigationMenu = () => {
         </ul>
 
         {/* Social Icons */}
-        <div className="mt-12 flex items-center justify-center gap-6">
+        <div className="mt-16 flex items-center justify-center gap-8 sm:mt-20">
           {/* Instagram */}
           <a
-            href="https://instagram.com/akshatc_"
+            href="https://instagram.com/akshat_c1"
             target="_blank"
             rel="noopener noreferrer"
             className="flex h-12 w-12 items-center justify-center rounded-full border border-neutral-700 text-white transition-all hover:border-neutral-500 hover:bg-neutral-800"
