@@ -19,11 +19,6 @@ const Skiper88 = () => {
 
   return (
     <div className="grid h-[300vh] w-full bg-[#eee]">
-      <div className="absolute left-1/2 top-[10%] grid -translate-x-1/2 content-start justify-items-center gap-6 text-center">
-        <span className="relative max-w-[12ch] text-xs uppercase leading-tight text-neutral-500 opacity-40 after:absolute after:left-1/2 after:top-full after:h-16 after:w-px after:bg-gradient-to-b after:from-neutral-200 after:to-neutral-900 after:content-['']">
-          scroll down to see
-        </span>
-      </div>
       <div className="relative w-full">
         <div
           className="sticky top-1/2 -translate-y-1/2"
