@@ -45,6 +45,11 @@ const photographyImages = [
   "/images/photography/img39.png",
   "/images/photography/img40.png",
   "/images/photography/img41.png",
+  "/images/photography/img42.png",
+  "/images/photography/img43.png",
+  "/images/photography/img44.png",
+  "/images/photography/img45.png",
+  "/images/photography/img46.png",
 ];
 
 export default function PhotographyPage() {
