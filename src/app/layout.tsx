@@ -8,13 +8,10 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Akshat Chopra | Developer & Designer",
-  description: "A passionate developer crafting beautiful digital experiences. Specializing in modern web applications with attention to detail and user experience.",
-  keywords: ["developer", "web development", "portfolio", "react", "next.js", "typescript"],
+  title: "Akshat Chopra",
   authors: [{ name: "Akshat Chopra" }],
   openGraph: {
-    title: "Akshat Chopra | Developer & Designer",
-    description: "A passionate developer crafting beautiful digital experiences.",
+    title: "Akshat Chopra",
     type: "website",
   },
 };
