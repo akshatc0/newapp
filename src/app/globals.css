@@ -1,66 +1,97 @@
 @import "tailwindcss";
 
+/* Editorial palette: warm paper, near-black ink, one deep green accent.
+   Dark mode inverts to ink paper rather than pure black. */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --paper: #f5f3ee;
+  --paper-raised: #fbfaf7;
+  --ink: #17160f;
+  --ink-soft: #3d3b33;
+  --muted: #6e6a5f;
+  --rule: #d9d4c8;
+  --accent: #1d5a43;
+  --accent-soft: #e3ece6;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #121310;
+    --paper-raised: #1a1b17;
+    --ink: #eceae3;
+    --ink-soft: #c9c6bc;
+    --muted: #8f8b80;
+    --rule: #2e2f29;
+    --accent: #7cc4a2;
+    --accent-soft: #1c2a23;
+  }
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-paper: var(--paper);
+  --color-paper-raised: var(--paper-raised);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-muted: var(--muted);
+  --color-rule: var(--rule);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
   --font-sans: var(--font-inter);
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+  --font-serif: var(--font-newsreader);
+  --font-mono: var(--font-plex-mono);
 }
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background: var(--paper);
+  color: var(--ink);
   font-family: var(--font-sans), system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: #f1f1f1;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #c1c1c1;
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #a1a1a1;
-}
-
-/* Selection styling */
 ::selection {
-  background-color: #171717;
-  color: #ffffff;
+  background-color: var(--accent);
+  color: var(--paper);
 }
 
-/* Focus styles */
 :focus-visible {
-  outline: 2px solid #171717;
-  outline-offset: 2px;
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
 }
 
-/* Smooth transitions for interactive elements */
-a,
-button {
-  transition: all 0.2s ease;
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* The resume page prints to a clean one-pager. */
+@media print {
+  :root {
+    --paper: #ffffff;
+    --paper-raised: #ffffff;
+    --ink: #000000;
+    --ink-soft: #1a1a1a;
+    --muted: #444444;
+    --rule: #bbbbbb;
+    --accent: #000000;
+  }
+  /* Tailwind sizes are rem-based, so shrinking the root scales the whole sheet. */
+  html {
+    font-size: 11px;
+  }
+  .no-print {
+    display: none !important;
+  }
+  @page {
+    margin: 0.5in;
+  }
 }

@@ -1,84 +1,136 @@
-"use client";
+import type { Metadata } from "next";
+import type { ReactNode } from "react";
 
-import { motion } from "framer-motion";
-import Link from "next/link";
+import SiteHeader from "@/components/site/SiteHeader";
+import {
+  certifications,
+  education,
+  experience,
+  honours,
+  leadership,
+  profile,
+  projects,
+  skills,
+  type Role,
+} from "@/content/profile";
 
+import PrintButton from "./PrintButton";
+
+export const metadata: Metadata = {
+  title: "Resume · Akshat Chopra",
+};
+
+// Rendered from the same content as the rest of the site, so the resume can
+// never drift out of date. "Save as PDF" prints this page to a one-pager.
 export default function ResumePage() {
   return (
-    <main className="flex min-h-screen w-full flex-col bg-neutral-950">
-      {/* Header */}
-      <div className="border-b border-neutral-800 bg-neutral-900">
-        <div className="mx-auto flex max-w-4xl items-center justify-between px-6 py-4">
-          <Link
-            href="/"
-            className="flex items-center gap-2 text-sm font-medium text-neutral-400 transition-colors hover:text-white"
-          >
-            <svg
-              className="h-4 w-4"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M10 19l-7-7m0 0l7-7m-7 7h18"
-              />
-            </svg>
-            Home
-          </Link>
-          <h1 className="text-lg font-semibold text-white">Resume</h1>
-          <div className="w-16" />
+    <>
+      <SiteHeader />
+      <main className="mx-auto max-w-3xl px-4 py-12 sm:px-8 sm:py-16 print:max-w-none print:p-0">
+        <div className="no-print mb-10 flex items-center justify-between gap-4">
+          <p className="font-mono text-xs uppercase tracking-[0.18em] text-muted">Resume</p>
+          <PrintButton />
         </div>
-      </div>
 
-      {/* Coming Soon Content */}
-      <div className="flex flex-1 flex-col items-center justify-center px-6">
-        <motion.div
-          className="text-center"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-        >
-          <motion.div
-            className="mb-6 inline-block"
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            transition={{ duration: 0.5, delay: 0.2, type: "spring" }}
-          >
-            <svg
-              className="h-16 w-16 text-neutral-600"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={1.5}
-                d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-              />
-            </svg>
-          </motion.div>
-          <motion.h2
-            className="text-4xl font-bold tracking-tight text-white sm:text-5xl"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-          >
-            Coming Soon
-          </motion.h2>
-          <motion.p
-            className="mt-4 text-lg text-neutral-400"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-          >
-            My resume is being updated. Check back shortly.
-          </motion.p>
-        </motion.div>
-      </div>
-    </main>
+        <article className="rounded-xl border border-rule bg-paper-raised p-6 sm:p-10 print:border-0 print:p-0 print:text-[9pt] print:leading-snug">
+          <header className="border-b border-rule pb-5 text-center">
+            <h1 className="font-serif text-4xl tracking-tight text-ink print:text-3xl">{profile.name}</h1>
+            <p className="mt-2 text-sm text-muted">
+              {profile.location} · {profile.email} · linkedin.com/in/akshatc1
+            </p>
+          </header>
+
+          <Block title="Education">
+            <Entry
+              left={education.school}
+              right={`${education.start} – ${education.end}`}
+              sub={education.degree}
+            />
+            <p className="mt-1 text-sm text-ink-soft">{education.notes.join(" · ")}</p>
+          </Block>
+
+          <Block title="Experience">
+            {experience.map((role) => (
+              <RoleEntry key={role.org} role={role} />
+            ))}
+          </Block>
+
+          <Block title="Projects">
+            {projects.map((p) => (
+              <div key={p.slug} className="break-inside-avoid">
+                <Entry left={p.name} right={`${p.start} – ${p.end}`} sub={`${p.tagline} · ${p.stack.join(", ")}`} />
+                <Bullets points={p.points} />
+              </div>
+            ))}
+          </Block>
+
+          <Block title="Leadership">
+            {leadership.slice(0, 2).map((role) => (
+              <RoleEntry key={role.org} role={role} />
+            ))}
+          </Block>
+
+          <Block title="Honours & certifications">
+            <p className="text-sm leading-relaxed text-ink-soft">
+              {honours
+                .slice(0, 6)
+                .map((h) => `${h.name} (${h.date})`)
+                .join(" · ")}
+            </p>
+            <p className="mt-2 text-sm leading-relaxed text-ink-soft">
+              {certifications.map((c) => `${c.name}, ${c.issuer}`).join(" · ")}
+            </p>
+          </Block>
+
+          <Block title="Skills">
+            {skills.map((s) => (
+              <p key={s.group} className="text-sm text-ink-soft">
+                <span className="font-medium text-ink">{s.group}:</span> {s.items.join(", ")}
+              </p>
+            ))}
+          </Block>
+        </article>
+      </main>
+    </>
   );
 }
+
+const Block = ({ title, children }: { title: string; children: ReactNode }) => (
+  <section className="mt-6 space-y-4 print:mt-3 print:space-y-2">
+    <h2 className="border-b border-rule pb-1 font-mono text-[11px] uppercase tracking-[0.18em] text-accent">
+      {title}
+    </h2>
+    {children}
+  </section>
+);
+
+const Entry = ({ left, right, sub }: { left: string; right: string; sub?: string }) => (
+  <div>
+    <div className="flex flex-wrap items-baseline justify-between gap-x-4">
+      <h3 className="font-medium text-ink">{left}</h3>
+      <p className="font-mono text-xs text-muted tabular">{right}</p>
+    </div>
+    {sub && <p className="text-sm italic text-ink-soft">{sub}</p>}
+  </div>
+);
+
+const RoleEntry = ({ role }: { role: Role }) => (
+  <div className="break-inside-avoid">
+    <Entry
+      left={role.org}
+      right={`${role.start} – ${role.end}`}
+      sub={[role.title, role.location].filter(Boolean).join(" · ")}
+    />
+    {role.summary && <p className="mt-1 text-sm leading-relaxed text-ink-soft">{role.summary}</p>}
+    <Bullets points={role.points} />
+  </div>
+);
+
+const Bullets = ({ points }: { points: string[] }) =>
+  points.length > 0 ? (
+    <ul className="mt-1.5 list-disc space-y-1 pl-5 print:space-y-0 text-sm leading-relaxed text-ink-soft marker:text-muted">
+      {points.map((p) => (
+        <li key={p}>{p}</li>
+      ))}
+    </ul>
+  ) : null;
